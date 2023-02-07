@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器的应用（有一个函数没有实现？？）</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box1{
+            width:100px;
+            height:100px;
+            background-color: aqua;
+            position: absolute;
+            left:0;
+        }
+        #box2{
+            width:100px;
+            height:100px;
+            background-color:chartreuse;
+            position: absolute;
+            left:0;
+            top:200px;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            //获取box1
+            // var box1 = document.getElementById("box1");
+            var btn01 = document.getElementById("btn01");
+            /*点击按钮以后，使box1向右移动，left值增大*/
+            btn01.onclick = function(){
+                //关闭上一个定时器(不理解？？？)
+                // clearInterval(timer);
+                // //开启一个定时器，用来执行动画效果
+                // timer = setInterval(function(){
+                //     //先获取box1的原来的left值
+                //     var oldValue = box1.offsetLeft;
+                //     //在旧值的基础上增加
+                //     var newValue = oldValue + 10;
+                //     //判断newValue是否大于800
+                //     if(newValue > 800){
+                //         newValue = 800;
+                //     }
+                //     //将新值设置给box1
+                //     box1.style.left = newValue + "px";
+                //     //当元素移动到800px时，使其停止执行动画
+                //     if(newValue == 800){
+                //         //到达目标，关闭定时器
+                //         clearInterval(timer);
+                //     };   
+                // }, 10);
+                /*方式二：调用移动函数*/
+                move(box1,800,10);
+            };
+            /*获取btn02*/
+            // var box1 = document.getElementById("box1");
+            var btn02 = document.getElementById("btn02");
+            /*点击按钮以后，使box1向左移动，left值减小*/
+            btn02.onclick = function(){
+                //关闭上一个定时器(不理解？？？)
+                // clearInterval(timer);
+                // //开启一个定时器，用来执行动画效果
+                // timer = setInterval(function(){
+                //     //先获取box1的原来的left值
+                //     var oldValue = box1.offsetLeft;
+                //     //在旧值的基础上增加
+                //     var newValue = oldValue - 10;
+                //     //判断newValue是否小于800
+                //     if(newValue < 0){
+                //         newValue = 0;
+                //     }
+                //     //将新值设置给box1
+                //     box1.style.left = newValue + "px";
+                //     //当元素移动到800px时，使其停止执行动画
+                //     if(newValue == 0){
+                //         //到达目标，关闭定时器
+                //         clearInterval(timer);
+                //     };   
+                // }, 10);
+                 /*方式二：调用移动函数*/
+                move(box1,0,10);
+            };
+
+            
+            var btn03 = document.getElementById("btn03");
+            btn03.onclick = function(){
+                move(box2,800,10);
+            };
+
+            var btn04 = document.getElementById("btn04");
+            btn04.onclick = function(){
+                move(box1,800,10,function(){
+                    move(box2,800,10,function(){
+                    alert("动画执行完毕了!");
+
+                    });
+
+                });
+               
+            };
+
+
+            /*参数：
+            obj 要执行动画的对象
+            offsetattr：要执行动画的样式 eg:left top width height (这个功能没有做？？)
+            target 执行动画的目标位置
+            speed 移动的速度(正数向右移动，负数向左移动)
+            callback回调函数，将会在动画执行完毕以后执行
+            */
+            //定义一个变量，来保存定时器的标识
+            /*目前定时器的标识由全局变量timer来保存，所有正在执行的定时器都在这个变量中保存*/
+            // var timer;
+            function move(obj,target,speed,callback){
+                //避免在同一个元素上开启多个定时器，关闭上一个定时器
+                clearInterval(obj.timer);
+                /*判断速度的正负值
+                如果从0到800移动，则speed为正值
+                如果从800-向0移动，则speex为负值
+                */
+               //获取元素目前的位置
+               var current = obj.offsetLeft;
+               if(current > target){
+                speed = -speed;
+               }
+                //开启一个定时器，用来执行动画效果
+                /*向执行动画的对象中添加一个timer属性，来保存它自己的定时器的标识（重点）*/
+                obj.timer = setInterval(function(){
+                    //先获取box1的原来的left值
+                    var oldValue = obj.offsetLeft;
+                    //在旧值的基础上增加
+                    var newValue = oldValue + speed;
+                    //向做移动时，需要判断newValue是否小于target
+                     //向右移动时，判断newValue是否大于target
+                    if(speed < 0 && newValue < target || speed > 0 && newValue > target){
+                        newValue = target;/*??*/
+                    }
+                    //将新值设置给box1
+                    obj.style.left = newValue + "px";
+                    //当元素移动到800px时，使其停止执行动画
+                    if(newValue == target){
+                        //到达目标，关闭定时器
+                        clearInterval(obj.timer);
+                        //动画执行完毕，调用回调函数，只会执行一次
+                        callback && callback();
+                    };   
+                }, 10);
+            };
+
+
+        }
+    </script>
+
+</head>
+<body>
+    <button id="btn01">点击按钮以后,box1向右移动</button>
+    <button id="btn02">点击按钮以后,box1向左移动</button>
+    <button id="btn03">点击按钮以后,box2向右移动</button>
+    <button id="btn04">测试按钮</button>
+
+    <br/><br/>
+    <div id="box1">box1</div>
+    <div id="box2">box2</div>
+    <div style="width:0; height:1000px; border-left:1px black solid; position:absolute; left:800px; top:0;"></div>
+</body>
+</html>

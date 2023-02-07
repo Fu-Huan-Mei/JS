@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+    <script>
+        window.onload = function(){
+            var count = document.getElementById("count");
+            //使count中的内容自动切换
+            // count.innerHTML = 2;
+            // count.innerHTML = 3;
+            // count.innerHTML = 4;
+            // /*JS的程序执行速度是非常快的*/
+            // for(var i=0;i<10;i++){
+            //     count.innerHTML = i;
+            //     alert("hello");
+            // }
+            var num =1;
+            var timer = setInterval(function() {
+                count.innerHTML = num++;
+                if(num == 11){
+                    //关闭定时器
+                    clearInterval(timer);
+                };  
+            }, 1000);
+            // alert(timer);
+          
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1 id="count"></h1>
+</body>
+</html>

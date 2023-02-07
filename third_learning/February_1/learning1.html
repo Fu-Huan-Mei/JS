@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery核心函数</title>
+    <script src="../JQuery/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <button id="btn01">点我一下</button>
+    <script>
+/*1、引入：引入JQuery库，其实就是向网页中添加一个新的函数$
+2、核心函数的功能：（作用）
+（1）将它作为工具类使用-在核心函数中JQuery为我们提供了多个工具方法*/
+        // console.log($);//console.log(jQuery)
+        // var a = 1;
+        // console.log($.isFunction(a));//false
+        // var fn = function(){};
+        // console.log($.isFunction(fn));//true
+//（2）将它作为函数使用：
+//将函数作为参数：jQuery(函数)或$(函数)，该函数会在文档加载完毕之后执行；相当于document.addEventListener("DOMContentLoaded",function(){})
+        // $(function(){
+        //     alert("核心函数内部~~");//后执行
+        // })
+        // alert("核心函数外部~~");//先执行
+
+$(function(){
+    $("#btn01").click(function(){
+        // alert("你点我干嘛~~");
+        var btn01 = document.getElementById("btn01");
+        // alert(btn01);//[object HTMLButtonElement]
+/*将选择器字符串作为参数：jQuery(选择器)或$(选择器)
+作用：jQuery会自动去网页中查找元素，作用类似于document.querySelectorAll("...")
+注意：通过JQuery核心函数查询的结果为并不是原生的DOM对象，而是经过JQuery包装的新对象，为我们提供了很多新方法，
+但是jQuery对象不能直接调用原生DOM对象的方法
+命名：为jQuery对象命名时，会使用$开头，加以区分*/
+        var btn02 = $("#btn01");
+        // alert(btn01); //[object HTMLButtonElement]
+    })
+})
+/*将DOM对象作为参数：jQuery(DOM对象)或$(DOM对象)；可以将DOM对象转为jQuery对象，从而使用jQuery对象的方法*/
+$(function(){
+    $("#btn01").click(function(){
+        // alert("你点我干嘛~~");
+        var btn01 = document.getElementById("btn01");
+        var $btn02 = $("#btn01");
+        // alert($btn02);//[object Object]
+        // alert($(btn01));//[object Object]
+    })
+})
+/*将HTML代码作为参数:jQuery(html代码)或$(html代码)；会根据html代码来创建元素（jQuery对象)*/
+$(function(){
+    $("#btn01").click(function(){
+        var btn01 = document.getElementById("btn01");//[object HTMLButtonElement]
+        var $btn = $("#btn01");
+        var $h1 = $("<h1>我是一个标题</h1>");//会根据html代码创建元素
+        alert($h1);//[object Object]
+    })
+})
+    </script>
+</body>
+</html>

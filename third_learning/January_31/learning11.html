@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location-浏览器的地址栏信息</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <form action="#">
+        <input type="text" name="username">
+    </form>
+    <script>
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click",()=>{
+            // console.log(location);
+//1、含义：表示的是浏览器的地址栏信息；
+//2、对象值：可以直接将location的值修改为一个新的地址，会使网页发生跳转
+            // location = "https://www.baidu.com";
+//3、location.href获取当前地址
+            console.log(location.href);//file:///D:/FrontWebLanguage/JavaLanguage/third_learning/January_31/learning11.html
+            console.log(location.origin);//file://
+//4、location.assign()跳转到一个新地址
+            console.log(location.assign("https://www.baidu.com"));
+//5、location.replace()跳转到一个新地址,无法通过回退按钮回退
+//6、location.reload()刷新页面,可以传递一个true，强制清除缓存刷新
+            location.reload(true);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其他样式相关的属性</title>
+    <style type="text/css">
+        #box1{
+            width:100px;
+            height:100px;
+            background-color: deeppink;
+            /* padding:10px; */
+            /* border:10px dotted yellow; */
+        }
+        #box4{
+            width:200px;
+            height:300px;
+            background-color: aqua;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+            var btn01 = document.getElementById("btn01");
+            var box2 = document.getElementById("box2");
+            var box4 = document.getElementById("box4");
+            btn01.onclick = function(){
+                // alert(box1.clientWidth);
+                // alert(box1.offsetWidth);
+            // var op = box2.offsetParent;
+            // alert(op);
+            // alert(op.innerHTML);
+            // alert(box1.offsetLeft);
+            // alert(box2.offsetLeft);
+
+
+/*
+1、clientWidth和clientHeight这两个属性都可以获取元素的可见宽度和高度，这些属性都是不带px的，
+返回的都是一个数字，可以直接进行计算，获取元素的宽度和高度，包括内容区和内边距;都是只读的属性，不可以修改
+2、offsetWidth和offsetHeight可以获取元素的整个宽度和高度，包括内容区、内边距和边框
+3、offsetParent获取当前元素的定位父元素，获取到离当前元素最近的开启了定位的祖先元素，如果所有的祖先元素都没有开启定位，则会返回body
+4、offsetLeft当前元素相对于其定位父元素的水平偏移量；offsetTop当前元素相对于其定位父元素的垂直偏移量
+5、scrollHeight\scrollWidth可以获取元素整个滚动区域的高度和宽度
+6、scrollLeft获取水平滚动条水平滚动的距离；scrolTop获取垂直滚动条滚动的区域
+7、当满足scrollHeight-scrollTop==clientHeight说明垂直滚动条滚动到底了
+当满足scrollWidth-scrollLeft==clientWidth说明水平滚动条滚动到底了
+8、
+
+*/
+            }
+            
+        }
+    </script>
+
+</head>
+<body>
+    <button id="btn01">点我一下</button>
+    <br/><br/>
+    <div id="box4">
+        <div id="box5"></div>
+    </div>
+    <div id="box1" style="position:relative;">
+        <div id="box2" ></div>
+    </div>
+    
+</body>
+</html>

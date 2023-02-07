@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../PythonLanguage/PythonPractice"
+		},
+		{
+			"path": "../PythonLanguage/DataStrcturePractice"
+		},
+		{
+			"path": "../HtmlLanguage/HtmlPracticeClass"
+		},
+		{
+			"path": "../CssLanguage"
+		},
+		{
+			"path": "../Vue.js"
+		},
+		{
+			"path": "../GitHub"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "CssLanguage",
+		"liveServer.settings.port": 5501
+	}
+}

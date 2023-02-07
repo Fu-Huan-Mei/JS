@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022-12-9:DOM删除员工的练习</title>
+    <script type="text/javascript">
+    //    window.onload = function(){
+    //         //获取body标签:只有一个
+    //         //从数组里把第一个标签取出来
+    //         var body = documant.getElementsByTagName('body')[0];
+    //         // 获取页面中的所有div
+    //         console.log(body);
+    //         // css选择器：.box1 div
+    //         // 该方法可以根据选择器的字符串作为参数，根据css选择器查询一个元素节点对象
+    //         // 获取class里box1里的div
+    //         var r = document.querySelector(".box1 div");
+    //         console.log(r);
+    //     }
+    window.onload = function(){
+        //1、点击超链接以后删除员工信息
+        //（1）获取所有超链接
+        var allA = document.getElementsByTagName("a");
+        //（2）为每个超链接绑定一个单击响应函数
+        for(var i = 0;i < allA.length ; i++){
+            allA[i].onclick = function(){
+                /*for循环会在页面加载完成之后立即执行，而响应函数会在超链接被点击时才执行，当响应函数执行时，dor循环早已执行完毕*/
+                //点击超链接后，需要删除超链接所在的那行,this点击哪个就是哪个
+                //获取当前tr
+                var tr = this.parentNode.parentNode;
+                // 获取要删除员工的名字
+                var name = tr.getElementsByTagName("td")[0].innerHTML;
+                // var name = tr.children[0].innerHTML;
+                //删除前弹出一个提示框
+                // confirm()：显示带有一段消息以及确认按钮和取消按钮的对话框，需要字符串作为参数，该字符串会作为提示框的文字;如果点击确认，返回true，否则返回false
+                var flag = confirm('确认删除吗？');
+                //先获取父节点，再删除父节点的tr
+                if(flag){//不可以xieflag==true吗？？？
+                    tr.parentNode.removeChild(tr);
+                /*问题：点击超链接后，超链接会跳转页面，这个是超链接的默认行为，但是此时我们不希望出现默认行为
+                解决方式：可以通过在响应函数后return false来取消默认行为
+                */
+                }
+                return false
+                
+            }
+        }
+    };
+    </script> 
+</head>
+<body>
+    <!-- <div class="box1">
+        <div>
+            我是box1中的div
+        </div>
+
+    </div> -->
+
+
+    
+</body>
+</html>

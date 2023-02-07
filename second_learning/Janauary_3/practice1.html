@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二级菜单(没听懂？？）</title>
+    <script src="../Tools/tools2.html"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+/*每一个菜单都是div：当div具有collapsed该类时，div就是折叠状态；当div没有该类时，div就是展开状态*/
+           /*点击菜单，切换菜单的显示状态*/ 
+           //创建所有的class为menuSpan的元素
+           var menuSpan = document.querySelectorAll("menuSpan");
+           //定义一个变量，保存当前打开的菜单
+           var openDiv = menuSpan[0].parentNode;
+           //为span绑定单击响应函数
+           for(var i=0;i<menuSpan.length;i++){
+            menuSpan[i].onclick = function(){
+                //this代表当前点击的span
+                //获取当前span的父元素
+                var parentDiv = this.parentDiv;
+                //切换类之前获取元素的高度
+                var begin = parentDiv.offsetHeight;
+                //切换parentDiv的显示
+                toggleClass(parentDiv,"collapsed");
+                //切换类之后获取一个高度
+                var end = parentDiv.offsetHeight;
+                //动画效果就是将begin向end过度
+                //将元素的高度重置为begin
+                parentDiv.style.height = begin + "px";
+                //执行动画从begin向end过度
+                move(parentDiv,"height",end,10,function(){
+                    //动画执行完毕，内联样式已经无存在意义，要删除
+                    parentDiv.style.height = "";
+                });//没有引入外部工具？？move()函数
+                //判断openDiv与parentDiv是否相同？？
+                if(openDiv != parentDiv && hasClass(openDiv,"collapsed")){
+                    //打开菜单以后，应该关闭之前打开的菜单
+                    //为了可以统一处理动画的过度效果，希望将addClass修改为toggleClass
+                    // addClass(openDiv,"collapsed");
+                    //此处toggleClass不需要有移除得功能 
+                    toggleClass(openDiv,"collapsed");//？？
+
+                };
+                //修改openDiv为当前打开的菜单
+                openDiv = parentDiv;
+            };
+           };
+
+           /*切换动画的显示效果*/
+           function toggleMenu(obj){
+                //切换类之前获取元素的高度
+            var begin = obj.offsetHeight;
+                //切换parentDiv的显示
+            toggleClass(obj,"collapsed");
+                //切换类之后获取一个高度
+            var end = obj.offsetHeight;
+                //动画效果就是将begin向end过度
+                //将元素的高度重置为begin
+            obj.style.height = begin + "px";
+                //执行动画从begin向end过度
+            move(obj,"height",end,10,function(){
+                    //动画执行完毕，内联样式已经无存在意义，要删除
+                obj.style.height = "";
+            });
+
+           }
+
+
+        }     
+    </script>
+</head>
+<body>
+    <div>
+        <span class="menuSpan">在线工具</span>
+        <a href="javascript:;"></a>
+    </div>                                                                                                                                                                                                                                                                                                                                            
+    
+</body>
+</html>

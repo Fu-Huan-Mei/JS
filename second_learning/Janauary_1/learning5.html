@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // alert(navigator.appName);
+        // alert(navigator.appCodeName);
+        // alert(navigator.userAgent);
+        // console.log(navigator.userAgent);
+        // // var ua = navigator.userAgent;
+        if(/chrome/i.test(ua)){
+            alert("你是chrome");
+        }else if(/firefox/i.test(ua)){
+            alert("你是火狐");
+        }else if(/msie/i.test(ua)){
+            alert("你是IE浏览器");
+        }else if("ActiveXObject" in window){
+            alert("你是IE11浏览器");/*也不能判断了？？？*/
+        }
+            /*如果不能通过userAgent不能判断，但可以通过一些浏览器中特有的对象来判断浏览器
+            */
+        //     alert(!!window.ActiveXObject);
+        //    if(window.ActiveXObject){
+        //     alert('你是IE');
+        //    }else{
+        //     alert('你不是IE');
+        //    }
+       
+        //    if("ActiveXObject" in Window){
+        //     alert('你是IE');
+        //    }else{
+        //     alert('你不是IE');
+        //    }
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

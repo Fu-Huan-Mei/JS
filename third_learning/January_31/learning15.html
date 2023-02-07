@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息队列--将要执行的函数（等待执行的代码）</title>
+</head>
+<body>
+    <button id="btn">点我一下1</button>
+    <button id="btn02">点我一下2</button>
+    <script>
+        /*队列：
+        1、本质：数据结构
+        2、特点：先进先出
+        消息队列
+        1、消息队列-将要执行的函数
+        （1）作用：负责存储将要执行的函数；
+        （2）具体进程：当我们触发一个事件时，其响应函数并不是直接就添加到调用栈中（因为调用栈中
+        可能存在一些未执行完的代码）；事件出触发后，JS引擎将事件响应函数插到消息队列中排队*/
+        function fn(){
+            let a = 10;
+            let b= 20;
+            function fn2(){
+                console.log("fn2");
+            }
+            fn2();
+            console.log("fn~~");
+        }
+        fn();
+        console.log(1111);
+        const btn = document.getElementById("btn");
+        const btn02 = document.getElementById("btn02");
+        btn.onclick = function(){
+            // console.log("按钮被点击了！");
+            alert(123);
+            const begin = Date.now();//时间戳
+            //延迟3s
+            while(Date.now()-begin<3000){
+                
+            }
+        }
+        btn02.onclick = function(){
+            alert(222);
+        }
+    </script>
+        
+</body>
+</html>

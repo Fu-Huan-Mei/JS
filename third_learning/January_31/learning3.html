@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>读取样式</title>
+    <style>
+        /* .box1{
+            width:200px;
+            height:200px; */
+            /*（3）注意：具有!important样式无法修改*/
+            /* background-color: aqua !important;
+        }
+        .box1::before{
+            content:'hello';
+            color:deeppink;
+        } */
+
+        #box1{
+            width:200px;
+            height:200px;
+            background-color: blueviolet;
+            border:1px solid black;
+            padding: 50px;
+            /* margin:50px; */
+            overflow:auto;/*自动生成滚动条*/
+        }
+        #box2{
+            width:100px;
+            height:500px;
+            background-color: chartreuse;
+           
+        }
+    </style>
+   
+</head>
+<body>
+    <!-- <button id="btn">点我一下</button>
+    <br>
+    <div class="box1" style="width:300px;"></div>
+    <script>
+        /*点击按钮后，读取CSS样式*/
+        const btn = document.getElementById("btn");
+        const box1 = document.querySelector(".box1");
+        btn.onclick = function(){
+            // 1、getComputedStyle()方法
+            //（1）返回值：返回一个对象，该对象中包含了当前元素中所有生效的样式；样式都带有单位
+            const styleObj = getComputedStyle(box1);
+            console.log(styleObj);
+            console.log(styleObj.width);//300px
+            r = parseInt(styleObj.width);//取整后才可计算
+            console.log(r);//300
+            console.log(styleObj.backgroundColor);//rgb(0, 255, 255)
+            //（2）参数：第一个：要获取样式的对象；第二个：要获取的伪元素
+            const beforeStyle = getComputedStyle(box1,"::before");
+            console.log(beforeStyle.color);//rgb(0, 0, 0)
+            //（3）注意：样式对象中返回的样式值，不一定可以直接计算，所以使用时，要确保值是可以计算的
+        }
+    </script> -->
+
+    <button id="btn">点我一下</button>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+    <br>
+    <script>
+        const btn = document.getElementById("btn");
+        const box1 = document.getElementById("box1");
+        btn.onclick = function(){
+//2、通过元素读取样式：只读无单位，直接取出来计算即可，无单位
+/*（1）获取元素内部的宽高（包括内容区和内边距）：元素.clientWidth、元素.clientHeight*/
+            console.log(box1.clientHeight);//300
+            console.log(box1.clientWidth);//300
+/*（2）获取元素可见框的大小（包括内容区、内边距和边框）：元素.offsetHeight、元素.offsetWidth*/
+            console.log(box1.offsetHeight);//302
+            console.log(box1.offsetWidth);//302
+/*（3）获取元素滚动区域的大小：元素.scrollHeight、元素.*/
+            console.log(box1.scrollHeight);//600=元素本身高度为500+外边距100
+            console.log(box1.scrollWidth);
+/*（4）元素.offsetParent获取元素的定位父元素；
+定位父元素：离当前元素最近的开启了定位的祖先元素，如果所有的元素都没有开启定位则返回body*/
+            console.log(box1.offsetParent);//<body></body>
+/*（5）元素.offsetTop获取元素相对于其定位父元素的顶部偏移量*/
+            console.log(box1.offsetTop);//32
+/*（6）元素.offsetLeft获取元素相对于其定位父元素的左侧偏移量*/
+            console.log(box1.offsetLeft);//8
+/*（7）获取元素滚动条的偏移量：元素.scrollTop、元素.scrollLeft*/
+            console.log(box1.scrollTop);
+        }
+    </script>
+
+</body>
+</html>

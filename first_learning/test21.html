@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022-12-9:使用DOM操作内联样式</title>
+    <style type="text/css">
+        /* #box1{
+            width:100px;
+            height:100px;
+            background-color: aqua;
+        } */
+        #box1{
+            width:100px;
+            height:100px; 
+            background-color: aqua;  
+        }
+        
+    </style>
+    <script type="text/javascript">
+        // window.onload = function(){
+        //     /*点击按钮以后，修改box1的大小*/
+        //     //获取box1
+        //     var box1 = document.getElementById("box1");
+        //     //为按钮绑定单击响应函数
+        //     var btn01 = document.getElementById("btn01");
+        //     btn01.onclick = function(){
+               
+        //         /*通过JS修改元素的样式
+        //         语法：*/
+        //          //修改box1的宽度
+        //         box1.style.width = "300px";
+        //         box1.style.height = "300px";
+        //         //注意如果css样式名中含有'-'，这种名称在JS中不合法，需要将这种样式名修改为驼峰命名法：去掉-号，将-后的字母大写
+        //         box1.style.backgroundColor = "yellow";
+        //     };
+            
+        // //为按钮绑定单击响应函数
+        // var btn02 = document.getElementById("btn02");
+        // btn02.onclick = function(){
+        //     //点击按钮2后，读取元素的内联样式
+        //     // alert(box1.style.height);
+        //     alert(box1.style.width);
+
+            
+        // };
+
+        // };
+        //只有IE支持
+        window.onload = function(){
+            //点击按钮以后读取box1的样式
+            var box1 = document.getElementById("box1");
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                //读取box1的宽度
+                //获取元素当前显示样式
+            //    alert(box1.currentStyle.backgroundColor);
+            //    alert(getComputedStyle(box1,null).width);
+                  alert(getStyle(box1,width));
+
+            };
+
+        };
+        
+        /*
+        定义函数获取指定元素的当前样式
+        参数：第一个：obj 要获取元素的样式
+              第二个：name 要获取的样式名*/
+        function getStyle(obj,name){
+            //window.getComputedStyle属性没有会返回undefined
+            //getComputedStyle变量不存在会报错
+            if(window.getComputedStyle){
+                //正常浏览器的方式
+                //返回obj对象
+                return getComputedStyle(obj,null)[name];
+            }else{
+                //IE8的方式
+                return obj.currentStyle[name];
+            };  
+        }
+       
+
+
+        
+
+    </script>
+    
+</head>
+<body>
+    <button id="btn01">点我一下</button>
+    <br/><br/>
+    <div id="box1"></div>
+    <!-- <button id="btn01">点我一下</button>
+    <button id="btn02">点我一下2</button>
+    <br/></br>
+    <div id="box1"></div>
+     -->
+    
+</body>
+</html>

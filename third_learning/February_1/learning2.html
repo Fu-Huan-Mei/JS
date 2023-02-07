@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery对象</title>
+    <script src="../JQuery/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <button id="btn01">点我一下</button>
+    <ul>
+        <li id="swk">孙悟空</li>
+        <li>猪八戒</li>
+        <li>沙和尚</li>
+        <li>唐僧</li>
+    </ul>
+    <script>
+/*1、含义：通过jQuery核心函数获取到的对象；jQuery对象是jQuery中定义的对象，是DOM对象的升级版，
+    提供了很多简单易用的方法，帮助我们简化DOM操作、
+2、本质：DOM对象的数组（类数组）*/
+    $("#btn01").click(function(){
+        var $li = $("li");
+        // alert($li[0].textContent);//孙悟空
+        // alert($li);//[object Object]
+        // alert(typeof $li);//jQuery对象：object
+//3、特点：隐式迭代：当修改jQuery对象时，会自动修改jQuery中的所有元素
+        // $li.text("哈哈哈");
+//4、读取文本：返回所有标签中的文本  eg:jQuery对象.方法
+        var text = $li.text();
+        // alert(text);//孙悟空猪八戒沙和尚唐僧
+//5、读取属性：返回第一个标签的属性  eg:jQuery对象.属性
+        var id = $li.attr("id");
+        // alert(id);//swk
+        var r = $li.text("新的文本");
+        // alert(r===$li);//[object Object]===$li  true
+/*6、链式调用：jQuery对象方法的返回值仍是一个jQuery对象，所以我们在调用一个方法后继续调用其他jQuery对象的方法*/
+        $li.text("新的文本").css("color","red");
+        $li.css("color","red")
+    })
+    </script>
+</body>
+</html>

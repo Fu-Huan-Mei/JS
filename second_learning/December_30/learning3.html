@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删除练习</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../December_29/css/normalize.css"> -->
+    <script type="text/javascript">
+        window.onload = function(){
+            /*1、点击超链接以后，删除一个员工的信息*/
+            //获取所有的超链接
+            var aAll = document.getElementsByTagName("a");
+            //为每个超链接都要绑定单击响应函数
+            for(var i=0;i<aAll.length;i++){/*for循环再页面加载完成后立即执行*/
+                /*单击响应函数再超链接被点击时才会执行,当单击响应函数后,for循环早已执行完毕*/
+                aAll[i].onclick = function(){
+                    /*点击超链接以后需要删除超链接所在的那行,点击哪个this就是谁*/
+                    //获取当前tr
+                    var tr = this.parentNode.parentNode;
+                    //获取要删除的员工的名字
+                    var n = tr.getElementsByTagName("td")[0].innerHTML
+/*删除之前弹出一个提示框 ：confirm(字符串)	显示带有一段消息以及确认按钮和取消按钮的对话框;
+如果用户点击确认，返回true；否则返回false*/
+                    var r = confirm("确认删除"+n+"吗？");
+                    
+                    //如果用户点击确认
+                    if(r==true){
+                        //删除tr:先获取父节点，再删除自己（自杀）
+                        tr.parentNode.removeChild(tr);
+                    }         
+/*点击超链接以后，会默认跳转页面，但是不希望出现跳转行为，可以通过在响应函数的最后return false来取消默认行为*/
+                    return false;
+                };
+            };
+        }
+
+    </script>
+</head>
+<body>
+    <table id="employeeTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@tom.com</td>
+            <td>5000</td>
+            <td><a href="deleteEmp?id=001">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Jerry</td>
+            <td>jerry@sohu.com</td>
+            <td>8000</td>
+            <td><a href="deleteEmp?id=002">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>bob@tom.com</td>
+            <td>10000</td>
+            <td><a href="deleteEmp?id=003">Delete</a></td>
+        </tr>
+    </table>
+    <div id="formDiv">
+        <table>
+            <tr>
+                <td class="word">name: </td>
+                <td class="inp">
+                    <input type="text" name="empName" id="empName"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="word">name: </td>
+                <td class="inp">
+                    <input type="text" name="email" id="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="word">name: </td>
+                <td class="inp">
+                    <input type="text" name="salary" id="salary"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button id="sddEmpButton" value="abc">
+                        Submit
+                    </button>
+
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    
+</body>
+</html>

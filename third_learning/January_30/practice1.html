@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习一:切换图片</title>
+    <style>
+        .outer{
+            width:640px;
+            height:390px;
+            /*设置容器居中*/
+            margin:50px auto;
+            /*设置文本居中*/
+            text-align: center;
+        }
+        img{
+            width:640px;
+            height:390px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+//功能：点击按钮，切换图片
+//获取info
+const info = document.getElementById("info");
+//1、获取图片
+const img = document.getElementsByTagName("img")[0];
+//2、获取2个按钮
+const pre = document.getElementById("prev");
+const next = document.getElementById("next");
+//创建数组存储图片的路径
+const imgArr = ["./picture/2.jpg","./picture/3.jpg","./picture/4.jpg","./picture/5.jpg","./picture/6.jpg",];
+//创建一个变量来记录当前图片的索引
+
+let current = 0;
+//图片自动切换的功能
+const autoBtn = document.getElementById("autoBtn");
+//方式一：
+//创建变量，存储定时器的id
+let timer ;
+autoBtn.onclick = ()=>{
+    //关闭定时器
+    clearTimeout(timer);
+    //开启定时器，切换图片
+    timer = setTimeout(function auto(){
+        next.onclick();
+        timer = setTimeout(auto,300);
+    },300)
+}
+//方式二：
+// autoBtn.onclick = ()=>{
+//     //开启定时器，切换图片
+//     setInterval(function auto(){
+//         //修改索引
+//         current++;
+//         if(current > imgArr.length-1){
+//         current = 0;
+//     }
+//     img.src = imgArr[current];
+//     info.textContent =  "总共"+imgArr.length+"张图片"+","+"当前是第"+current+1+"张";
+//     },3000)
+// }
+
+//设置info中的文本内容
+info.textContent =  "总共"+imgArr.length+"张图片"+","+"当前是第"+current+1+"张";
+//点击pre按钮，切换图片：上一张
+pre.onclick = function(){
+    //切换图片--》2.jpg  就是修改img的src属性
+    // img.src = imgArr[1];
+    current--;
+    //检查current的值是否合法
+    if(current<0){
+        current = imgArr.length - 1; 
+    }
+    img.src = imgArr[current];
+    info.textContent =  "总共"+imgArr.length+"张图片"+","+"当前是第"+current+1+"张";
+}
+//点击pre按钮，切换图片：下一张
+next.onclick = function(){
+    //切换图片--》1.jpg  
+    // img.src = imgArr[0];
+    current++;
+    if(current > imgArr.length-1){
+        current = 0;
+    }
+    img.src = imgArr[current];
+    info.textContent =  "总共"+imgArr.length+"张图片"+","+"当前是第"+current+1+"张";
+}
+           
+        }
+    </script>
+</head>
+<body>
+    <div class="outer">
+        <p id="info">
+
+        </p>
+        <div class="img-wrapper">
+            <img src="./picture/2.jpg" alt="图片">
+        </div>
+
+        <div class="btn-wrapper">
+            <button id="prev">上一张</button>
+            <button id="autoBtn">自动</button>
+            <button id="next">下一张</button>
+        </div>
+    </div>
+</body>
+</html>

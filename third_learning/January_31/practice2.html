@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习:轮播图</title>
+    <link rel="stylesheet" href="../css.style/reset.css">
+    <style>
+        .outer{
+            width:640px;
+            height:390px;
+            margin:0 auto;
+           position: relative;
+        }
+        img{
+            vertical-align: top;
+            width:640px;
+            height:390px;
+        }
+        .img-list{
+            height:390px;
+        }
+        .img-list li{
+            /*图片全都重叠到一起，呈现最后一张图片*/
+            position: absolute;
+            /*???opacity*/
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        li.current{
+            z-index:1;
+            background-color: coral;
+            opacity: 1;
+        }
+        /*设置两个箭头的样式*/
+        .prev-next a{
+            font-size: 60px;
+            color:red;
+            font-weight: bold;
+            text-decoration: none;
+            position:absolute ;
+            height:60px;
+            top:0;
+            bottom:0;
+            margin:auto;
+            z-index: 2;
+            /*半透明状态*/
+            opacity: .5;
+        }
+        #next{
+            right:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <ul class="img-list">
+            <li class="current">
+                <a href="#">
+                    <img src="./picture/2.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./picture/3.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./picture/4.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./picture/5.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./picture/6.jpg">
+                </a>
+            </li>
+        </ul>
+        <!--添加按钮-->
+        
+        <div class="prev-next">
+            <a id="prev" href="javascript:;"><</a>
+            <a id="next" href="javascript:;">></a>
+        </div>
+    </div>
+    <script>
+        /*自动切换图片*/
+        setTimeout(function auto(){
+            //获取当前显示的图片
+            const current = document.querySelector(".img-list .current");
+            //获取下一张图片
+            //做出判断：如果是最后一张图片，则直接切换到第一张图片
+            const next = current.nextElementSibling || document.getElementsByTagName("li")[0];
+            //切换显示状态??不懂？？？classList??
+            current.classList.remove ("current");
+            next.classList.add("current");
+
+            setTimeout(auto,3000);
+        },3000)
+        /*点击按钮，切换图片*/
+        const pre = document.getElementById("pre");
+        const next = document.getElementById("next");
+        pre.onclick = ()=>{
+             //获取当前显示的图片
+            const current = document.querySelector(".img-list .current");
+            //获取下一张图片
+            //做出判断：如果是最后一张图片，则直接切换到第一张图片
+            const next = current.previousElementSibling || document.querySelector("li:last-child");
+            //切换显示状态??不懂？？？classList??
+            current.classList.remove ("current");
+            next.classList.add("current");
+            
+        }
+        next.onclick = ()=>{
+             //获取当前显示的图片
+             const current = document.querySelector(".img-list .current");
+            //获取下一张图片
+            //做出判断：如果是最后一张图片，则直接切换到第一张图片
+            const next = current.nextElementSibling || document.getElementsByTagName("li")[0];
+            //切换显示状态??不懂？？？classList??
+            current.classList.remove ("current");
+            next.classList.add("current");
+            
+        }
+    </script>
+    <!--问题;
+1、简化代码？？
+2、如何控制图片自动切换的关闭和开启？？-->
+</body>
+</html>

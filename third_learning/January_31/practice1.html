@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的冒泡</title>
+    <style>
+        #box1{
+            width:100px;
+            height:100px;
+            border-radius: 50%;
+            background-color: aqua;
+            position: absolute;
+        }
+        #box2{
+            width:200px;
+            height:200px;
+            background-color: chartreuse;
+        }
+        #box3{
+            width:300px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3">
+        <div id="box4"></div>
+    </div>
+    <script>
+        /*让小绿球跟随鼠标一起移动*/
+        const box1 = document.getElementById("box1");
+        const box2 = document.getElementById("box2");
+        //绑定鼠标移动事件
+//情况一：绑定给box1，那小绿球只会朝着一个方向移动，并且出现闪烁的情况，并且只有鼠标在小球上时，小球才会移动
+        // box1.addEventListener("mousemove",(event)=>{
+        //     //设置偏移量
+        //     box1.style.left = event.x + "px";
+        //     box1.style.top = event.y + "px";
+
+        // })
+//情况二：把鼠标移动事件绑定给document文档对象
+        document.addEventListener("mousemove",(event)=>{
+            //设置偏移量
+            box1.style.left = event.x + "px";
+            box1.style.top = event.y + "px";
+        })
+        box2.addEventListener("mousemove",(event)=>{
+            //取消冒泡事件
+            event.stopPropagation();
+        })
+    </script>
+</body>
+</html>

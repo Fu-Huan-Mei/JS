@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性节点</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input disabled="disabled" type="text" name="username" value="admin" class="a">
+    <script>
+/*
+1、属性节点(Attr)：在DOM中也是一个对象，但不需要获取对象而是直接通过元素即可完成对其的各种操作
+2、方式一：操作属性节点
+（1）读取：元素.属性名
+（2）注意：class属性需要 元素.className来读取
+（3）注意：读取布尔值（只有属性名）时，返回true或false 
+eg:disabled一般只写属性名，无属性值，但是也可以这样写：disabled="disabled"
+（4）修改：元素.属性名 = 属性值
+*/
+const input = document.getElementsByName("username")[0];
+console.log(input);//<input type="text" name="username" value="admin">
+const r = document.querySelector("[name=username]");//通过元素选择器获取属性
+console.log(r);//<input type="text" name="username" value="admin">
+input.name = "FHM";
+console.log(input.name);//FHM
+/*3、方式二
+（1）读取：元素.getAtrribute(属性名)*/
+i = input.getAttribute("name");
+console.log(i);//FHM
+b = input.getAttribute("value");
+console.log(b);//admin
+//（2）修改：元素.setAtrribute(属性名，属性值)
+c = input.setAttribute("name","孙悟空");
+console.log(c);//undefined
+r1 = input.name;
+console.log(r1);//孙悟空
+input.setAttribute("disabled",true);
+console.log(input.disabled);//true
+//（3）删除：元素.removeAttribute(属性名)
+input.removeAtrribute(name);
+// console.log(input.name);
+    </script>
+</body>
+</html>

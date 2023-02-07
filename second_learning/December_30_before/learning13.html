@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //onload事件会在整个页面加载完成后执行
+        window.onload = function(){
+            //获取id为btn的按钮
+            var btn = document.getElementById("btn");
+            //为按钮绑定一个单击响应函数(回调函数)
+            btn.onclick = function(){
+                alert("hello");
+            };
+        };
+        
+    </script>
+    
+</head>
+<body>
+<!--
+1、浏览器加载页面顺序时：自上而下的顺序加载，读取到一行就运行一行，如果将script标签写到页面的上边，在代码执行时，页面还没有加载
+将JS代码编写到页面下边，就可以确保页面加载完成后再执行js代码
+2、onload事件会在整个页面加载完成后执行
+-->
+    <button id="btn">点我一下</button>
+    <script type="text/javascript">
+        
+    </script>
+    
+</body>
+</html>

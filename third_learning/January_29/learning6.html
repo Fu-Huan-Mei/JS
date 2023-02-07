@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM(文档对象模型)</title>
+    <style>
+        /*节点(Node)：共同父类
+        1、概念：网页中每一个对象
+        2、类型：
+        （1）文档节点：整个网页  eg:Document
+        （2）元素节点：某个标签  eg:HTML
+        （3）文本节点：网页中的文本内容  eg::target-text
+        （4）属性节点：标签中的各种属性eg:*/
+        /*DOM(文档对象模型)
+        1、D:Document文档：整个网页
+        2、 O:Object对象：DOM将网页的每一部分内容都转换为对象 eg:通过该对象去操作网页
+        3、 M：Model模型：对象之间的关系 eg:父子元素、祖先后代、兄弟元素等
+        */
+        
+    </style>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <script>
+        /* 4、使用 :网页至少先给我们提供一个对象，才可完成各种操作
+        （1）document：全局变量，代表整个网页*/
+        alert(document);
+        //获取btn对象
+        const r = document.getElementById("btn");
+        alert(r);
+        //修改btn中的文字：按钮中的文字发生变化
+        btn.innerText = "Click Me";
+      
+
+    </script>
+    
+</body>
+</html>

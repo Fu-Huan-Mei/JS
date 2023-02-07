@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作class</title>
+    <style>
+        .box1{
+            width:200px;
+            height:200px;
+            /*（3）注意：具有!important样式无法修改*/
+            background-color: aqua !important;
+        }
+        .box2{
+            background-color: blueviolet;
+        }
+        .box3{
+            width:500px;
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <br>
+    <div class="box1"></div>
+    <script>
+        /*点击按钮后，修改box1的宽度*/
+        const btn = document.getElementById("btn");
+        const box1 = document.querySelector(".box1");
+        btn.onclick = function(){
+            /*1、方式：修改class属性修改样式
+            2、优点：
+            （1）一次修改多个样式
+            （2）对JS和CSS进行解耦*/
+            box1.className += "box2";//box1和box2的样式一起使用：相同的样式就替换，不同的样式就合并
+            // box1.className = "box2";//直接使用box2的样式来替代box1的样式
+            /*2、元素.classList：是一个对象，对象中提供了对当前元素的类的各种操作方法
+            （1）元素.classList.add()向元素中添加一个或多个class*/
+            box1.classList.add("box2","box3");
+            /*（2）元素.classList.remove()向元素中移除一个或多个class*/
+            box1.classList.remove("box2");
+            /*（3）元素.toggle()切换元素中一个class*/
+            box1.classList.toggle("box1");
+            /*（4）元素.replace()替换class*/
+            // box1.classList.repalce('box1',"box3");
+            /*（5）元素.contains()检查class*/
+            box1.classList.contains("box1");
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档的加载</title>
+    <script>
+/*（2）将代码编写到window.onload的回调函数中（因为window.onload会在窗口中内容加载完后才触发）*/
+//注意：一个文档中不一定只有一个窗口
+//特点：所有文档加载完后才会触发
+            window.onload = function(){
+                const btn = document.getElementById("btn");
+                console.log(btn);
+            }
+            // window.addEventListener("load",function(){
+            //     const btn = document.getElementById("btn");
+            //     console.log(btn);
+            // })
+/*（3）将代码编写到document对象的DOMContentLoaded回调函数中（因为document的DOMContentLoaded事件会在当前文档加载完后触发）
+特点：当前文档加载完后就被触发
+特点：执行时机更早*/
+                document.addEventListener("DOMContentLoaded",function(){
+                    const btn = document.getElementById("btn");
+                    console.log(btn);
+                })
+    </script>
+<!--4、将代码编写到外部js文件中，再以defer形式引入（因为defer属性会使该标签延时加载）
+特点：执行时机最早-->
+<script defer src="./script.js"></script>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+<!--
+1、网页加载：网页自上向下加载
+2、问题：如果将js代码编写到网页上边，js代码在执行时，网页还没有加载完，无法获取到DOM对象
+3、解决方法：
+（1）将script标签编写到body最后-->
+    <script>
+        const btn = document.getElementById("btn");
+        console.log(btn);
+        btn.onclick = function(){
+            alert(123);
+        }
+
+       
+       
+    </script>
+</body>
+</html>

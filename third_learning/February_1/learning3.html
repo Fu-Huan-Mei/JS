@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery对象的方法</title>
+    <script src="../JQuery/jquery-3.6.3.min.js"></script>
+    <style>
+        .box1{
+            width:200px;
+            height:200px;
+            background-color: aqua;
+        }
+        .box2{
+            border:10px black solid;
+        }
+        .box3{
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <br>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <script>
+        //jQuery对象.add
+    $(function(){
+        $("#btn").click(function(){
+        //     //为box1添加class
+        //     //addClass()可以为元素添加一个或多个class
+        //     // $(".box1").addClass("box2");//一个class
+        //     // $(".box1").addClass(["box2","box3"]);//多个class
+        //     //1、addClass可以接受一个回调函数作为参数
+        //     $(".box1").addClass(function(index,className){
+        //         //在回调函数中，this表示当前元素
+        //         // alert(this);//[object HTMLDivElement]
+        //         // alert(index,"--",className);
+        //         if(index % 2 === 0){
+        //             //添加box2
+        //             // this.classList.add("box2");//DOM方法
+        //             // $(this).addClass("box2");//通过jQuery对象的方法来解决
+        //         }else{
+        //             //添加box3
+        //             // this.classList.add("box3");//DOM方法
+        //             // $(this).addClass("box3");//通过jQuery对象的方法来解决
+        //         } 
+        //     })
+            /*方法二：*/
+            $(".box1").addClass(function(index){
+                //回调函数的返回值会成为当前元素的class
+                // return ["box2","box3"];
+                if(index%2===0){
+                    return "box2";
+                }else{
+                    return "box3";
+                }
+                
+            })
+         })
+        
+      
+    })
+    </script>
+</body>
+</html>

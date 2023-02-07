@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>>添加容器</title>
+    <script src="../JQuery/jquery-3.6.3.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn").click(function(){
+                //1、unwrap()删除外层元素
+                // $("#list li").unwrap("ul");
+                //2、wrap（）为当前每一个元素添加一个容器
+                // $("#list li").wrap("<div/>");
+                //3、wrapAll()为当前所有元素统一添加到一起
+                $("#list li").wrapAll("<div/>");
+                //4、wrapInner()为当前元素添加内部容器
+                $("#list li").wrapInner("<div/>");
+            })
+        })
+    </script>
+    
+</head>
+<body>
+    <button id="btn">点我</button>
+    <hr>
+    <ul id="list">
+        <li>孙悟空</li>
+        <li>猪八戒</li>
+    </ul>
+    <ul id="list2">
+        <li>沙和尚</li>
+        <li>唐僧</li>
+    </ul>
+</body>
+</html>

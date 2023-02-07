@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <!--如果需要兼容IE7以及以下版本的JSON操作，需要引入外部的js文件-->
+    <script type="text/javascript" src="js文件"></script>
+    <script type="text/javascript">
+        /*创建一个对象*/
+        var obj = '{"name":"孙悟空","age":18,"gender":"男"}';
+        alert(obj.name);
+        console.log(obj.age);
+        console.log(typeof obj);
+        var arr = [123,"hello",true];
+        var obj2 = "{'arr':[123,345]'}";
+        var o = JSON.parse(obj);
+        alert(o);
+        alert(o[1]);
+        alert(o.name);
+        var obj3 = {name:'猪八戒',age:28,gender:'男'};
+        var s = JSON.stringify(obj3);
+        console.log(s,typeof s);
+        var str = "alert('name:孙悟空,age:18,gender:男')";
+        eval(str);
+        var str = '{"name":"孙悟空","age":18,"gender":"男"}';
+        var obj = eval("("+str+")");
+        console.log(obj);
+      
+
+       
+
+    </script>
+</head>
+<body>
+
+    
+</body>
+</html>

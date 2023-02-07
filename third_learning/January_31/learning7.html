@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的委派</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <br>
+    <ul id="list">
+        <li><a href="javascript:;">链接一</a></li>
+        <li><a href="javascript:;">链接二</a></li>
+        <li><a href="javascript:;">链接三</a></li>
+        <li><a href="javascript:;">链接四</a></li>
+    </ul>
+    <script>
+        // const links = document.querySelectorAll("ul a");//获取整个网页中的超链接
+        // console.log(links);//NodeList(4)  [a,a,a,a]
+        const list = document.getElementById("list");
+        const btn = document.getElementById("btn");
+        //获取list中的所有超链接a
+        const links = list.getElementsByTagName("a");//获取list下所有超链接
+        // console.log(links);//HTMLCollection(4)  [a,a,a,a]
+        // console.log(Array.from(links));//将links转为数组 (4)  [a,a,a,a]
+        console.log([...links]);//将links转为数组 (4)  [a,a,a,a]
+        //  //方法一：为超链接绑定单击响应函数，只会使当前超链接具有该事件
+        //  for(let i=0;i<links.length;i++){
+        //     links[i].addEventListener("click",(event)=>{
+        //         //event.target代表触发事件对象links，点谁target.event就是谁
+        //         alert(event.target.textContent);
+        //     })
+        // }
+/*方法二：
+1、希望：只绑定一次事件，就可以让所有的超链接，包括当前和未来新建的超链接都具有这些事件
+2、思路：可以将事件统一绑定给document，这样点击超链接时由于事件冒泡，会导致document的点击事件被触发，
+就可实现只绑定一次，所有超链接均具有这些事件
+3、委派：将本该绑定给多个元素的事件，统一绑定给document，这样将可以降低代码的复杂程度，便于维护*/
+        document.addEventListener("click",(event)=>{
+            //执行函数前：先判断事件由谁触发
+            //检查event.target是否在links中存在
+            //将links转为数组
+        //    console.log(Array.from(links));
+           //如果超链接中包含触发事件对象，就说明鼠标点击了超链接，超链接就会被触发
+           if([...links].includes(event.target)){
+            alert(event.target.textContent);
+           }
+           
+        })
+        //点击按钮后，向ul中添加一个新的li
+        //为btn绑定单击响应函数
+        btn.addEventListener("click",(event)=>{
+            list.insertAdjacentHTML("beforeend","<li><a href='javascript:;''>新链接</a></li>")
+        })
+      
+    </script>
+</body>
+</html>

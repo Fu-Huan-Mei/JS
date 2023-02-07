@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档节点(document对象)</title>
+    <style>
+        /*
+        1、document对象：整个网页
+        2、document原型链:HTMLDocument-->Document-->Node-->EventTarget-->Object.Prototype-->Null；
+        凡是在原型链上存在的对象的属性和方法都可以通过Document去调用
+        3、部分属性：
+        （1）document.documentElement-->html根元素
+        （2）document.head-->head元素
+        （2）document.title-->title元素
+        （2）document.body-->body元素
+        （2）document.links-->获取页面中所有的超链接*/
+    </style>
+    <script>
+        console.log(document);
+        console.log(document.__proto__);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的属性和方法</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <div id="box1">我是box
+        <span class="s1">我是s1</span>
+        <span class="s1">我是s1</span>
+    </div>
+    <span class="s1">我是s1</span>
+
+    <script>
+        const box1 = document.getElementById("box1");
+        console.log(box1);//
+        /*运行结果  <div id="box1">我是box
+        <span class="s1">我是s1</span>
+        <span class="s1">我是s1</span>
+        </div>*/
+/*   
+1、div元素的原型链：HTMLDivElement->HTMLElement->Element->Node
+2、通过元素节点对象获取其他节点的方法和属性*/
+        // console.log(box1.__proto__);
+        // console.log(box1.__proto__.__proto__);
+/*（1）方法：element.getElementsByTagName()根据标签名来获取元素节点下的子元素*/
+        const spans = box1.getElementsByTagName("span");
+        console.log(spans.length);//2
+        console.log(spans);//[span.s1, span.s1]
+/*（2）属性：element.childNodes获取当前元素的子节点（包括空白节点）*/
+        const cns = box1.childNodes;
+        console.log(cns,cns.length);//5个  /*0: text   1: span.s1   2: text  3: span.s1  4: text*/
+        console.log(cns[0]);
+/*（3）属性：element.children获取当前元素的子元素*/
+        const children = box1.children;
+        console.log(children);//2个 分别是  0: span.s1    1: span.s1
+/*（4）属性：element.firstElementChild获取当前元素的第一个子元素*/
+/*（5）属性：element.lastElementChild获取当前元素的最后一个子元素*/
+/*（6）属性：element.previousElementSibling获取当前元素的前一个兄弟元素*/
+/*（7）属性：element.nextElementSibling获取当前元素的下一个兄弟元素*/
+/*（8）属性：element.parentNode获取当前元素的父节点*/
+/*（9）属性：element.tagName获取当前元素的标签名*/
+    </script>
+
+</body>
+</html>
